@@ -91,7 +91,7 @@ var _ = Describe("application", Ordered, Focus, func() {
 
 		By("Check the appsub is applied to the cluster")
 		Eventually(func() error {
-			return checkAppsubreport(appClient, 1, 1, managedClusterName1) 
+			return checkAppsubreport(appClient, 1, 1, managedClusterName1)
 		}, 5*60*time.Second, 5*1*time.Second).ShouldNot(HaveOccurred())
 	})
 
@@ -121,11 +121,11 @@ var _ = Describe("application", Ordered, Focus, func() {
 
 		By("Check the appsub apply to the clusters")
 		Eventually(func() error {
-			err := checkAppsubreport(appClient, 2, 2, managedClusterName1) 
+			err := checkAppsubreport(appClient, 2, 2, managedClusterName1)
 			if err != nil {
 				return err
 			}
-			err = checkAppsubreport(appClient, 2, 2, managedClusterName2) 
+			err = checkAppsubreport(appClient, 2, 2, managedClusterName2)
 			if err != nil {
 				return err
 			}
@@ -179,7 +179,7 @@ func checkAppsubreport(appClient client.Client, expectDeployNum, expectClusterNu
 		return err
 	}
 	klog.V(5).Info("# cluster: ", clusterNum)
-	//TODO if deployNum == expectDeployNum && clusterNum == expectClusterNum {
+	// TODO if deployNum == expectDeployNum && clusterNum == expectClusterNum {
 	if deployNum == expectDeployNum {
 		if expectClusterNum == 0 && expectDeployNum == 0 {
 			return nil
