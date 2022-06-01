@@ -11,21 +11,8 @@ fmt:
 check: fmt
 	@./cicd-scripts/check-variables.sh
 
-.PHONY: connection
-connection: fmt check
-	@./cicd-scripts/run-tests.sh -f "connection" -v $(verbose)
-
-.PHONY: label
-label: fmt check
-	@./cicd-scripts/run-tests.sh -f "label" -v $(verbose)
-
-.PHONY: policy
-policy: fmt check
-	@./cicd-scripts/run-tests.sh -f "policy" -v $(verbose)
-
-.PHONY: app 
-app: fmt check
-	@./cicd-scripts/run-tests.sh -f "app" -v $(verbose)
+connection label policy app : fmt check
+	@./cicd-scripts/run-tests.sh -f $@ -v $(verbose)
 
 .PHONY: all
 all: fmt check
