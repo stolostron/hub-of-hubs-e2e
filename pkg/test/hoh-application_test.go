@@ -27,6 +27,7 @@ const (
 )
 
 var _ = Describe("application", Label("app"), Ordered, func() {
+
 	var token string
 	var httpClient *http.Client
 	var managedClusterName1 string
