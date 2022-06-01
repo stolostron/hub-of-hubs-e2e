@@ -13,6 +13,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/stolostron/hub-of-hubs-e2e/pkg/utils"
+	"k8s.io/klog"
 	clusterv1 "open-cluster-management.io/api/cluster/v1"
 )
 
@@ -21,7 +22,7 @@ const (
 	CLUSTER_LABEL_VALUE = "test"
 )
 
-var _ = Describe("label", Ordered, func() {
+var _ = Describe("label", Label("label"), Ordered, func() {
 	var token string
 	var httpClient *http.Client
 	var managedClusterName string
@@ -42,6 +43,7 @@ var _ = Describe("label", Ordered, func() {
 		By("Get a managed cluster name")
 		managedClusters := getManagedCluster(httpClient, token)
 		managedClusterName = managedClusters[0].Name
+		klog.V(6).Info(fmt.Sprintf("get cluster: %s for the label test", managedClusterName))
 	})
 
 	It("add the label to the managed cluster", func() {
